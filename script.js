@@ -1,16 +1,3 @@
-window.onload = function() {
-    const articles = document.querySelectorAll('.article');
-
-    articles.forEach(article => {
-        const title = article.querySelector('h2');
-        const content = article.querySelector('.article-content');
-
-        title.addEventListener('click', () => {
-            content.style.display = content.style.display === 'none' ? 'block' : 'none';
-        });
-    });
-};
-
 function addNewArticle() {
 	const articlesContainer = document.getElementById('articles-container');
 	const titleInput = document.getElementById('title-input');
@@ -100,3 +87,16 @@ function previewImage(event) {
 		imagePreview.src = URL.createObjectURL(selectedFile);
 	}
 }
+
+window.onload = function() {
+    const articles = document.querySelectorAll('.article');
+
+    articles.forEach(article => {
+        const title = article.querySelector('h2');
+        const content = article.querySelector('.article-content');
+
+        title.addEventListener('click', () => {
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+};
