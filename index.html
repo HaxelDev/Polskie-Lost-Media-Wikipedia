@@ -9,13 +9,16 @@
 </head>
 <body>
     <div class="main-menu">
-        <a href="#">Strona główna</a>
-        <a href="#">Pomoc</a>
-        <a href="#">Ogłoszenia</a>
+        <form id="section-selection">
+            <label for="section">Wybierz sekcję:</label>
+            <select id="section" name="section">
+                <option value="articles">Strona główna</option>
+                <option value="announcements">Ogłoszenia</option>
+            </select>
+            <button type="button" onclick="showSection()">Przejdź</button>
+        </form>
     </div>
-
     <h1>Polskie Lost Media - Wikipedia</h1>
-
     <div id="articles-container">
         <div class="article">
             <h2>Pancerowany</h2>
@@ -41,5 +44,6 @@
 		<img id="image-preview" alt="Podgląd zdjęcia" />
 		<button onclick="addNewArticle()">Dodaj artykuł</button>
 	</div>
+    <input id="search-input" type="text" placeholder="Przeszukaj artykuły" oninput="searchItems()" />
 </body>
 </html>

@@ -49,20 +49,44 @@ window.onload = function() {
 		imagePreview.src = '';
 	}
 
-	function searchArticles() {
-		const searchInput = document.getElementById('search-input');
-		const articles = document.querySelectorAll('.article');
+	function showSection() {
+		const sectionSelection = document.getElementById('section-selection');
+		const selectedSection = sectionSelection.querySelector('#section').value;
+		const articlesContainer = document.getElementById('articles-container');
+		const announcementsContainer = document.getElementById('announcements-container');
 
-		const searchTerm = searchInput.value.toLowerCase();
+		if (selectedSection === 'articles') {
+			articlesContainer.style.display = 'block';
+			announcementsContainer.style.display = 'none';
+		} else if (selectedSection === 'announcements') {
+			articlesContainer.style.display = 'none';
+			announcementsContainer.style.display = 'block';
+		}
+	}
+
+	function searchItems() {
+		const searchInput = document.getElementById('search-input').value.toLowerCase();
+		const articles = document.querySelectorAll('.article');
+		const announcements = document.querySelectorAll('.announcement');
 
 		articles.forEach(article => {
-			const title = article.querySelector('h2').textContent.toLowerCase();
-			const content = article.querySelector('.article-content').textContent.toLowerCase();
-	
-			if (title.includes(searchTerm) || content.includes(searchTerm)) {
+			const articleTitle = article.querySelector('h2').textContent.toLowerCase();
+			const articleContent = article.querySelector('.article-content').textContent.toLowerCase();
+
+			if (articleTitle.includes(searchInput) || articleContent.includes(searchInput)) {
 				article.style.display = 'block';
 			} else {
 				article.style.display = 'none';
+			}
+		});
+
+		announcements.forEach(announcement => {
+			const announcementText = announcement.textContent.toLowerCase();
+
+			if (announcementText.includes(searchInput)) {
+				announcement.style.display = 'block';
+			} else {
+				announcement.style.display = 'none';
 			}
 		});
 	}
