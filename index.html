@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polskie Lost Media - Wikipedia</title>
+	<link rel="stylesheet" href="Wiki.css" type="text/css" />
+	<script src="script.js"></script>
+</head>
+<body>
+    <div class="main-menu">
+        <a href="#">Strona główna</a>
+        <a href="#">Pomoc</a>
+        <a href="#" onclick="showAnnouncements()">Ogłoszenia</a>
+    </div>
+
+    <h1>Polskie Lost Media - Wikipedia</h1>
+
+    <div id="articles-container">
+        <div class="article">
+            <h2>Pancerowany</h2>
+            <div class="article-content">
+                <p>Pancerowany - Jedna z wczesnych polskich dobranocek telewizyjnych, emitowana w Telewizji Polskiej w</p>
+                <p>latach 60. XX wieku. Bohaterem bajki była pacynka, stworzona przez scenograf Lidię Wopaleńską</p>
+                <p>z jednopalcowej rękawiczki, z naszytymi guzikami jako oczyma. Głosu lalce użyczał Hubert Antoszewski.</p>
+                <p>Dialogi w serialu napisała pisarka Maria Terlikowska.</p>
+            </div>
+        </div>
+    </div>
+	<div class="add-article-form">
+		<h2>Dodaj nowy artykuł</h2>
+		<input id="title-input" type="text" placeholder="Tytuł artykułu" />
+		<textarea id="content-input" placeholder="Treść artykułu"></textarea>
+		<input id="image-input" type="file" accept="image/*" onchange="previewImage(event)" />
+		<img id="image-preview" alt="Podgląd zdjęcia" />
+		<button onclick="addNewArticle()">Dodaj artykuł</button>
+	</div>
+</body>
+</html>
