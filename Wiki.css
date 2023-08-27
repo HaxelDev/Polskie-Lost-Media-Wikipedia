@@ -143,3 +143,13 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+.delete-article-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+}

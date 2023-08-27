@@ -28,13 +28,27 @@ function addNewArticle() {
 
 	newArticle.appendChild(newTitle);
 	newArticle.appendChild(newContent);
-
 	articlesContainer.appendChild(newArticle);
+
+    const deleteArticleBtn = document.createElement('button');
+    deleteArticleBtn.classList.add('delete-article-btn');
+    deleteArticleBtn.textContent = 'Usuń artykuł';
+    deleteArticleBtn.onclick = function() {
+        deleteArticle(this);
+    };
+    newArticle.appendChild(deleteArticleBtn);
 
 	titleInput.value = '';
 	contentInput.value = '';
 	imageInput.value = '';
 	imagePreview.src = '';
+}
+
+function deleteArticle(button) {
+    const article = button.closest('.article');
+    if (article) {
+        article.remove();
+    }
 }
 
 function showSection() {
