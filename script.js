@@ -42,13 +42,16 @@ function showSection() {
 	const selectedSection = sectionSelection.querySelector('#section').value;
 	const articlesContainer = document.getElementById('articles-container');
 	const announcementsContainer = document.getElementById('announcements-container');
+    const addArticleForm = document.querySelector('.add-article-form');
 
 	if (selectedSection === 'articles') {
 		articlesContainer.style.display = 'block';
 		announcementsContainer.style.display = 'none';
+		addArticleForm.style.display = 'block';
 	} else if (selectedSection === 'announcements') {
 		articlesContainer.style.display = 'none';
 		announcementsContainer.style.display = 'block';
+		addArticleForm.style.display = 'none';
 	}
 }
 

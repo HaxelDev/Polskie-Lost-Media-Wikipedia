@@ -122,3 +122,24 @@ h2 {
 #section + button:hover {
     background-color: #555;
 }
+#announcements-container {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
+.announcements {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.announcement {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
