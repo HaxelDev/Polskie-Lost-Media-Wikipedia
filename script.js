@@ -28,7 +28,6 @@ function addNewArticle() {
 
 	newArticle.appendChild(newTitle);
 	newArticle.appendChild(newContent);
-	articlesContainer.appendChild(newArticle);
 
     const deleteArticleBtn = document.createElement('button');
     deleteArticleBtn.classList.add('delete-article-btn');
@@ -38,17 +37,66 @@ function addNewArticle() {
     };
     newArticle.appendChild(deleteArticleBtn);
 
+	articlesContainer.appendChild(newArticle);
+
 	titleInput.value = '';
 	contentInput.value = '';
 	imageInput.value = '';
 	imagePreview.src = '';
+
+    saveArticlesToLocalStorage();
 }
 
 function deleteArticle(button) {
     const article = button.closest('.article');
     if (article) {
         article.remove();
+        saveArticlesToLocalStorage();
     }
+}
+
+function saveArticlesToLocalStorage() {
+    const articlesContainer = document.getElementById('articles-container');
+    const articles = articlesContainer.querySelectorAll('.article');
+
+    const articlesData = [];
+    articles.forEach(article => {
+        const title = article.querySelector('h2').textContent;
+        const content = article.querySelector('.article-content').textContent;
+        articlesData.push({ title, content });
+    });
+
+    localStorage.setItem('articles', JSON.stringify(articlesData));
+}
+
+function loadArticlesFromLocalStorage() {
+    const articlesContainer = document.getElementById('articles-container');
+    const articlesData = JSON.parse(localStorage.getItem('articles')) || [];
+
+    articlesData.forEach(articleData => {
+        const newArticle = document.createElement('div');
+        newArticle.classList.add('article');
+
+        const newTitle = document.createElement('h2');
+        newTitle.textContent = articleData.title;
+
+        const newContent = document.createElement('div');
+        newContent.classList.add('article-content');
+        newContent.textContent = articleData.content;
+
+        newArticle.appendChild(newTitle);
+        newArticle.appendChild(newContent);
+
+        const deleteArticleBtn = document.createElement('button');
+        deleteArticleBtn.classList.add('delete-article-btn');
+        deleteArticleBtn.textContent = 'Usuń artykuł';
+        deleteArticleBtn.onclick = function() {
+            deleteArticle(this);
+        };
+        newArticle.appendChild(deleteArticleBtn);
+
+        articlesContainer.appendChild(newArticle);
+    });
 }
 
 function showSection() {
@@ -106,6 +154,8 @@ function previewImage(event) {
 }
 
 window.onload = function() {
+    loadArticlesFromLocalStorage();
+
     const articles = document.querySelectorAll('.article');
 
     articles.forEach(article => {
