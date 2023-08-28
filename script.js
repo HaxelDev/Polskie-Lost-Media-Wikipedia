@@ -24,6 +24,7 @@ function login() {
 
     if (user && verifyPassword(password, user.passwordHash)) {
         currentUser = user;
+		showUserSection();
     } else {
         alert('Błędny login lub hasło.');
     }
@@ -37,6 +38,7 @@ async function register() {
         const passwordHash = await hashPassword(password);
         users.push({ username, passwordHash });
         alert('Konto zostało zarejestrowane.');
+		showUserSection();
     } else {
         alert('Konto o podanej nazwie już istnieje.');
     }
@@ -61,6 +63,30 @@ function cancelLoginOrRegister() {
     document.getElementById('register-form').style.display = 'none';
     document.getElementById('articles-container').style.display = 'block';
     document.querySelector('.add-article-form').style.display = 'block';
+}
+
+function showUserSection() {
+    const userSection = document.getElementById('user-section');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+
+    userSection.style.display = 'block';
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'none';
+
+    document.getElementById('articles-container').style.display = 'block';
+    document.querySelector('.add-article-form').style.display = 'block';
+    document.getElementById('login-username').value = '';
+    document.getElementById('login-password').value = '';
+
+    document.getElementById('username').textContent = currentUser.username;
+    document.getElementById('login-btn').style.display = 'none';
+    document.getElementById('register-btn').style.display = 'none';
+}
+
+function logout() {
+    currentUser = null;
+    showLoginForm();
 }
 
 function showAuthButtons() {
