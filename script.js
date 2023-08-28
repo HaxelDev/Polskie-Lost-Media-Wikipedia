@@ -1,5 +1,3 @@
-const authButtons = document.getElementById('auth-buttons');
-
 let currentUser = null;
 
 function showLoginForm() {
@@ -24,11 +22,11 @@ function cancelLoginOrRegister() {
 }
 
 function showAuthButtons() {
-    authButtons.style.display = 'block';
+    document.getElementById('auth-buttons').display = 'block';
 }
 
 function hideAuthButtons() {
-    authButtons.style.display = 'none';
+    document.getElementById('auth-buttons').style.display = 'none';
 }
 
 function addNewArticle() {
