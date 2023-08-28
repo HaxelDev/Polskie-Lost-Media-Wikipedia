@@ -1,5 +1,50 @@
 let currentUser = null;
 
+const users = [
+    { username: 'user1', password: 'password1' },
+    { username: 'user2', password: 'password2' }
+];
+
+function login() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        currentUser = user;
+        showUserSection();
+    } else {
+        alert('Błędny login lub hasło.');
+    }
+}
+
+function register() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+
+    if (!users.some(u => u.username === username)) {
+        users.push({ username, password });
+        alert('Konto zostało zarejestrowane.');
+        showLoginForm();
+    } else {
+        alert('Konto o podanej nazwie już istnieje.');
+    }
+}
+
+function logout() {
+    currentUser = null;
+    showLoginForm();
+}
+
+function deleteAccount() {
+    if (confirm('Czy na pewno chcesz usunąć swoje konto?')) {
+        users.splice(users.indexOf(currentUser), 1);
+        currentUser = null;
+        showLoginForm();
+    }
+}
+
 function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('register-form').style.display = 'none';
