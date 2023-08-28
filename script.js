@@ -24,7 +24,7 @@ function login() {
 
     if (user && verifyPassword(password, user.passwordHash)) {
         currentUser = user;
-		showUserSection();
+        showUserSection();
     } else {
         alert('Błędny login lub hasło.');
     }
@@ -38,7 +38,8 @@ async function register() {
         const passwordHash = await hashPassword(password);
         users.push({ username, passwordHash });
         alert('Konto zostało zarejestrowane.');
-		showUserSection();
+        currentUser = { username, passwordHash };
+        showUserSection();
     } else {
         alert('Konto o podanej nazwie już istnieje.');
     }
