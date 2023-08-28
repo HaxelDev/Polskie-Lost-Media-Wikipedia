@@ -6,23 +6,39 @@ const users = [
 ];
 
 async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const buffer = await crypto.subtle.digest('SHA-256', data);
-    return Array.from(new Uint8Array(buffer)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+    try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    } catch (error) {
+        console.error('Wystąpił błąd podczas hashowania hasła:', error);
+        return null;
+    }
 }
 
 async function verifyPassword(password, hash) {
-    const hashedPassword = await hashPassword(password);
-    return hashedPassword === hash;
+    try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+        return hashHex === hash;
+    } catch (error) {
+        console.error('Wystąpił błąd podczas weryfikowania hasła:', error);
+        return false;
+    }
 }
 
-function login() {
+async function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
     const user = users.find(u => u.username === username);
 
-    if (user && verifyPassword(password, user.passwordHash)) {
+    if (user && await verifyPassword(password, user.passwordHash)) {
         currentUser = user;
         showUserSection();
     } else {
