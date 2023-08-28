@@ -80,8 +80,7 @@ function showUserSection() {
     document.getElementById('login-password').value = '';
 
     document.getElementById('username').textContent = currentUser.username;
-    document.getElementById('login-btn').style.display = 'none';
-    document.getElementById('register-btn').style.display = 'none';
+    document.getElementById('auth-buttons').style.display = 'none';
 }
 
 function logout() {
