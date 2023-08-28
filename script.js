@@ -1,3 +1,36 @@
+const authButtons = document.getElementById('auth-buttons');
+
+let currentUser = null;
+
+function showLoginForm() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('articles-container').style.display = 'none';
+    document.querySelector('.add-article-form').style.display = 'none';
+}
+
+function showRegisterForm() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'block';
+    document.getElementById('articles-container').style.display = 'none';
+    document.querySelector('.add-article-form').style.display = 'none';
+}
+
+function cancelLoginOrRegister() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('articles-container').style.display = 'block';
+    document.querySelector('.add-article-form').style.display = 'block';
+}
+
+function showAuthButtons() {
+    authButtons.style.display = 'block';
+}
+
+function hideAuthButtons() {
+    authButtons.style.display = 'none';
+}
+
 function addNewArticle() {
 	const articlesContainer = document.getElementById('articles-container');
 	const titleInput = document.getElementById('title-input');
@@ -167,3 +200,6 @@ window.onload = function() {
         });
     });
 };
+
+showLoginForm();
+showAuthButtons();

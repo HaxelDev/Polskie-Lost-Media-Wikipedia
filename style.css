@@ -153,3 +153,62 @@ h2 {
     font-size: 14px;
     margin-top: 5px;
 }
+.form {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    text-align: center;
+    display: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.form h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.form p {
+    margin-top: 10px;
+}
+#auth-buttons {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#auth-buttons button {
+    margin: 5px;
+}
+.section {
+    background-color: #f7f7f7;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.section h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+.section button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+}

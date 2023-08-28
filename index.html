@@ -17,6 +17,10 @@
             </select>
             <button type="button" onclick="showSection()">Przejdź</button>
         </form>
+        <div id="auth-buttons">
+            <button onclick="showLoginForm()">Zaloguj się</button>
+            <button onclick="showRegisterForm()">Zarejestruj się</button>
+        </div>
     </div>
     <h1>PolskieLostMedia.pl</h1>
     <div id="articles-container">
@@ -36,6 +40,22 @@
                 <p>To jest ważne ogłoszenie numer 1.</p>
             </div>
         </div>
+    </div>
+    <div id="login-form" class="form">
+        <h2>Logowanie</h2>
+        <input type="text" placeholder="Nazwa użytkownika">
+        <input type="password" placeholder="Hasło">
+        <button onclick="login()">Zaloguj</button>
+        <button onclick="cancelLoginOrRegister()">Anuluj</button>
+        <p>Nie masz jeszcze konta? <a href="#" onclick="showRegisterForm()">Zarejestruj się</a></p>
+    </div>
+    <div id="register-form" class="form">
+        <h2>Rejestracja</h2>
+        <input type="text" placeholder="Nazwa użytkownika">
+        <input type="password" placeholder="Hasło">
+        <button onclick="register()">Zarejestruj</button>
+        <button onclick="cancelLoginOrRegister()">Anuluj</button>
+        <p>Masz już konto? <a href="#" onclick="showLoginForm()">Zaloguj się</a></p>
     </div>
     <input id="search-input" type="text" placeholder="Przeszukaj artykuły" oninput="searchItems()" />
 </body>
