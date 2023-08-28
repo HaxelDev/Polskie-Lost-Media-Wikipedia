@@ -1,47 +1,44 @@
 let currentUser = null;
 
 const users = [
-    { username: 'user1', password: 'password1' },
-    { username: 'user2', password: 'password2' }
+    { username: 'user1', passwordHash: null },
+    { username: 'user2', passwordHash: null }
 ];
+
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const buffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(buffer)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function verifyPassword(password, hash) {
+    const hashedPassword = await hashPassword(password);
+    return hashedPassword === hash;
+}
 
 function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
+    const user = users.find(u => u.username === username);
 
-    const user = users.find(u => u.username === username && u.password === password);
-
-    if (user) {
+    if (user && verifyPassword(password, user.passwordHash)) {
         currentUser = user;
-        showUserSection();
     } else {
         alert('Błędny login lub hasło.');
     }
 }
 
-function register() {
+async function register() {
     const username = document.getElementById('register-username').value;
     const password = document.getElementById('register-password').value;
 
     if (!users.some(u => u.username === username)) {
-        users.push({ username, password });
+        const passwordHash = await hashPassword(password);
+        users.push({ username, passwordHash });
         alert('Konto zostało zarejestrowane.');
-        showLoginForm();
     } else {
         alert('Konto o podanej nazwie już istnieje.');
-    }
-}
-
-function logout() {
-    currentUser = null;
-    showLoginForm();
-}
-
-function deleteAccount() {
-    if (confirm('Czy na pewno chcesz usunąć swoje konto?')) {
-        users.splice(users.indexOf(currentUser), 1);
-        currentUser = null;
-        showLoginForm();
     }
 }
 
